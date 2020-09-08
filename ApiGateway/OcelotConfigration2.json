@@ -1,0 +1,32 @@
+//负载均衡功能
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/api/Home",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9002
+        },
+        {
+          "Host": "localhost",
+          "Port": 9001
+        }
+      ],
+      "UpstreamPathTemplate": "/Home",
+      "LoadBalancerOptions": {
+        //"Type": "LeastConnection"
+        "Type": "RoundRobin"
+      },
+
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "AdministrationPath": "/administration"
+
+  }
+
+}
